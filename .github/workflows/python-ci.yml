@@ -1,0 +1,43 @@
+name: Python CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+  pull_request:
+    branches:
+      - master
+      - release/*
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Print user info
+      run: |
+        echo "Name: Sandul Aleksandr Aleksandrovich"
+        echo "Group: М3114"
+        echo "GitHub Username: onyankopon23"
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.13
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run tests
+      run: python3 -m unittest discover tests
+
+    - name: Check code style
+      run: python3 -m flake8 .
+

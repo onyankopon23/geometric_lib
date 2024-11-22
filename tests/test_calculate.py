@@ -1,7 +1,9 @@
 import unittest
 from calculate import calc
 
+
 class TestCalculate(unittest.TestCase):
+
     def test_calc_circle_area(self):
         self.assertAlmostEqual(calc('circle', 'area', [5]), 78.53981633974483)
 
@@ -19,6 +21,7 @@ class TestCalculate(unittest.TestCase):
     def test_invalid_parameters(self):
         with self.assertRaises(ValueError):
             calc('circle', 'area', [5, 10])
+
 
 if __name__ == "__main__":
     unittest.main()
